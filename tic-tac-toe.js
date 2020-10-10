@@ -13,9 +13,9 @@ window.onload = function(){
         console.log('added square!');
     })
 
-    this.selector()
+    reset()
 
-    console.log(gameTracker)
+    this.selector()
 
 }
 
@@ -112,6 +112,22 @@ function checkForWinner() {
             document.getElementById('status').className = 'you-won'
             document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
         
+        }
+    })
+}
+
+function reset() {
+    
+    var btn = document.querySelectorAll('.btn')[0];
+    btn.addEventListener('click', function(e) {
+        squares.forEach(function(element, index, list) {
+            element.innerHTML = '';
+        })
+        document.getElementById('status').innerHTML = 'Move your mouse over a square and click to play an X or an O.'
+        document.getElementById('status').classList.remove('you-won')
+
+        for(var i = 0; i < 9; i++) {
+            gameTracker.pop();
         }
     })
 }
