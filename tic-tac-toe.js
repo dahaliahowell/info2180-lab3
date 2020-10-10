@@ -21,6 +21,14 @@ function selector() {
 
     squares.forEach(function(element, index, list) {
 
+        element.addEventListener('mouseover', function(e) {
+            e.target.classList.add('hover')
+        })
+
+        element.addEventListener('mouseout', function(e) {
+            e.target.classList.remove('hover')
+        })
+
         element.addEventListener('click', function(e) {
 
             if (e.target.innerHTML == 'O') {
