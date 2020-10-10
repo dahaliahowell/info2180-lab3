@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 
 var squares = [];
 var gameTracker = new Array(9);
@@ -21,6 +21,8 @@ window.onload = function(){
 
 function selector() {
 
+    var alreadydone = ['placeholder', 'placeholder']
+
     squares.forEach(function(element, index, list) {
 
         element.addEventListener('mouseover', function(e) {
@@ -32,6 +34,10 @@ function selector() {
         })
 
         element.addEventListener('click', function(e) {
+
+            if (alreadydone.slice(0, alreadydone.length - 2).includes(index) && index != alreadydone.slice(-2,-1)) {
+                this.removeEventListener('click', arguments.callee);
+            }
 
             if (e.target.innerHTML == 'O') {
                 e.target.classList.remove('O');
@@ -59,6 +65,11 @@ function selector() {
                 console.log(gameTracker)
                 checkForWinner()
             }
+
+            alreadydone.push(index);
+            console.log(alreadydone)
+
+            
         })
 
     }
