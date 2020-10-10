@@ -15,6 +15,8 @@ window.onload = function(){
 
     this.selector()
 
+    console.log(gameTracker)
+
 }
 
 function selector() {
@@ -37,6 +39,8 @@ function selector() {
                 e.target.innerHTML = 'X';
                 gameTracker[index] = 'X'
                 console.log('click x')
+                console.log(gameTracker)
+                checkForWinner()
 
             } else if (e.target.innerHTML == 'X') {
                 e.target.classList.remove('X');
@@ -44,16 +48,70 @@ function selector() {
                 e.target.innerHTML = 'O';
                 gameTracker[index] = 'O'
                 console.log('click o')
+                console.log(gameTracker)
+                checkForWinner()
 
             } else {
                 e.target.classList.add('X');
                 e.target.innerHTML = 'X';
                 gameTracker[index] = 'X'
                 console.log('click x')
+                console.log(gameTracker)
+                checkForWinner()
             }
         })
 
     }
 
     )
+}
+
+function checkForWinner() {
+
+    var arr = ['X', 'O'];
+
+    arr.forEach(function(element, index, list){
+
+        if (element == gameTracker[0] && element == gameTracker[1] && element == gameTracker[2]) {
+
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[3] && element == gameTracker[4] && element == gameTracker[5]) {
+
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[6] && element == gameTracker[7]  && element == gameTracker[8]) {
+            
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[0] && element == gameTracker[3] && element == gameTracker[6]) {
+            
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[1] && element == gameTracker[4] && element == gameTracker[7]) {
+            
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[2] && element == gameTracker[5] && element == gameTracker[8]) {
+            
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[0] && element == gameTracker[4] && element == gameTracker[8]) {
+            
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        } else if (element == gameTracker[2] && element == gameTracker[4] && element == gameTracker[6]) {
+            
+            document.getElementById('status').className = 'you-won'
+            document.getElementById('status').innerHTML = `Congratulations! ${element} is the Winner!`
+        
+        }
+    })
 }
