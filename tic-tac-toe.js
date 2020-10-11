@@ -2,6 +2,7 @@
 
 var squares = [];
 var gameTracker = new Array(9);
+var alreadydone = []
 
 window.onload = function(){
 
@@ -21,8 +22,6 @@ window.onload = function(){
 
 function selector() {
 
-    var alreadydone = ['placeholder', 'placeholder']
-
     squares.forEach(function(element, index, list) {
 
         element.addEventListener('mouseover', function(e) {
@@ -34,10 +33,6 @@ function selector() {
         })
 
         element.addEventListener('click', function(e) {
-
-            if (alreadydone.slice(0, alreadydone.length - 2).includes(index) && index != alreadydone.slice(-2,-1)) {
-                this.removeEventListener('click', arguments.callee);
-            }
 
             if (e.target.innerHTML == 'O') {
                 e.target.classList.remove('O');
@@ -53,7 +48,7 @@ function selector() {
                 e.target.classList.add('O');
                 e.target.innerHTML = 'O';
                 gameTracker[index] = 'O'
-                console.log('click o')
+                console.log('clicked for o')
                 console.log(gameTracker)
                 checkForWinner()
 
@@ -61,15 +56,18 @@ function selector() {
                 e.target.classList.add('X');
                 e.target.innerHTML = 'X';
                 gameTracker[index] = 'X'
-                console.log('click x')
+                console.log('clicked for x')
                 console.log(gameTracker)
                 checkForWinner()
             }
 
             alreadydone.push(index);
             console.log(alreadydone)
-
             
+            if (alreadydone.slice(0, alreadydone.length - 2).includes(index) && index != alreadydone.slice(-2,-1)) {
+                this.removeEventListener('click', arguments.callee);
+            }
+
         })
 
     }
@@ -140,5 +138,9 @@ function reset() {
         for(var i = 0; i < 9; i++) {
             gameTracker.pop();
         }
+
+        alreadydone.forEach(function(element) {
+            alreadydone.pop();
+        })
     })
 }
